@@ -2,6 +2,9 @@ from datetime import datetime
 import flet as ft
 from crud import gastos_crud
 from schemas.gastos_schemas import NuevoGasto
+from sqlalchemy import create_engine, inspect
+from sqlalchemy.orm import sessionmaker
+from sqlmodel import SQLModel  # Use SQLModel as the base class for your models
 
 FECHA_ACTUAL = datetime.now().strftime("%Y-%m-%d")
 
@@ -84,3 +87,14 @@ def eliminar_fila(gasto_id, table_gastos, page):
     table_gastos.rows.clear()
     table_gastos.rows.extend(updated_table.rows)
     page.update()
+
+def validate_and_create_tables():
+    engine = create_engine('sqlite:///your_database.db')  # Replace with your actual database URL
+    inspector = inspect(engine)
+    tables = inspector.get_table_names()
+    
+    if not tables:
+        SQLModel.metadata.create_all(engine)  # Use SQLModel.metadata.create_all
+        print("Tables created successfully.")
+    else:
+        print("Tables already exist.")
