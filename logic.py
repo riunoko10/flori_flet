@@ -81,6 +81,6 @@ def eliminar_fila(gasto_id, table_gastos, page):
     gastos_crud.eliminar_gasto(gasto_id)
     # Refresh the table after deletion
     updated_table = load_gastos_table(get_table_gastos, page)
-    page.controls.remove(table_gastos)
-    page.controls.append(updated_table)
+    table_gastos.rows.clear()
+    table_gastos.rows.extend(updated_table.rows)
     page.update()
