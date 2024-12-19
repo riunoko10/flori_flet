@@ -1,6 +1,6 @@
 import flet as ft
-from logic import get_table_gastos, load_gastos_table, agregar_fila, eliminar_fila
-from schemas.gastos_schemas import CategoriaEnum
+from logic.gastos_logic import get_table_gastos, load_gastos_table, agregar_fila, eliminar_fila
+from schemas.gastos_schema import CategoriaEnum
 
 def gastos_view(page: ft.Page):
     titulo = ft.Text("Registrar Gastos", size=24, color=ft.Colors.WHITE, text_align=ft.TextAlign.CENTER)
@@ -14,10 +14,10 @@ def gastos_view(page: ft.Page):
         table_container.content = load_gastos_table(get_table_gastos, page)
         page.update()
 
-    def on_eliminar_fila(gasto_id):
-        eliminar_fila(gasto_id, table_gastos, page)
-        table_container.content = load_gastos_table(get_table_gastos, page)
-        page.update()
+    # def on_eliminar_fila(gasto_id):
+    #     eliminar_fila(gasto_id, table_gastos, page)
+    #     table_container.content = load_gastos_table(get_table_gastos, page)
+    #     page.update()
 
     agregar_boton = ft.ElevatedButton(
         "Agregar", 
