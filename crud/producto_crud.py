@@ -24,8 +24,7 @@ def crear_producto(nuevo_producto: NuevoProducto):
 def obtener_productos():
     try:
         with Session(engine) as session:
-            statement = select(Producto)
-            productos = session.exec(statement).all()
+            productos = session.exec(select(Producto), execution_options={"prebuffer_rows": True}).all()
             return productos
     except Exception as e:
         raise RuntimeError(f"Ocurrio un error al obtener los productos: {e}")

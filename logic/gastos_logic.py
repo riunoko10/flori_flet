@@ -23,10 +23,10 @@ def get_table_gastos():
     )
     return table
 
-def load_gastos_table(get_table_gastos, page):
+def load_gastos_table(get_table, page):
     try:
         result = gastos_crud.obtener_gastos()
-        table_gastos = get_table_gastos()
+        table_gastos = get_table()
         if result:
             for gasto in result:
                 nueva_fila = ft.DataRow(

@@ -14,6 +14,10 @@ def producto_view(page: ft.Page):
     def on_agregar_producto(e):
         producto_logic.agregar_producto(nombre, descripcion, precio, stock, table_productos, page)
         table_container.content = producto_logic.load_productos_table(producto_logic.get_table_productos, page)
+        nombre.value = ""
+        descripcion.value = ""
+        precio.value = ""
+        stock.value = ""
         page.update()
     
     def on_eliminar_fila(gasto_id):
@@ -29,10 +33,10 @@ def producto_view(page: ft.Page):
     col={ "xs": 12, "sm": 6, "md": 4, "lg": 2 }
     )
 
-    nombre = ft.TextField(hint_text="Nombre", bgcolor=ft.Colors.BLUE_GREY_700, col={ "xs": 12, "sm": 6, "md": 4, "lg": 3 })
-    descripcion = ft.TextField(hint_text="Descripcion", bgcolor=ft.Colors.BLUE_GREY_700, col={ "xs": 12, "sm": 6, "md": 4, "lg": 3 })
-    precio = ft.TextField(hint_text="Precio", bgcolor=ft.Colors.BLUE_GREY_700, col={ "xs": 12, "sm": 6, "md": 4, "lg": 3 })
-    stock = ft.TextField(hint_text="Cantidad en inventario", bgcolor=ft.Colors.BLUE_GREY_700, col={ "xs": 12, "sm": 6, "md": 4, "lg": 3 })
+    nombre = ft.TextField(label="Nombre", bgcolor=ft.Colors.BLUE_GREY_700, col={ "xs": 12, "sm": 6, "md": 4, "lg": 3 })
+    descripcion = ft.TextField(label="Descripcion", bgcolor=ft.Colors.BLUE_GREY_700, col={ "xs": 12, "sm": 6, "md": 4, "lg": 3 })
+    precio = ft.TextField(label="Precio", bgcolor=ft.Colors.BLUE_GREY_700, col={ "xs": 12, "sm": 6, "md": 4, "lg": 3 })
+    stock = ft.TextField(label="Cantidad en inventario", bgcolor=ft.Colors.BLUE_GREY_700, col={ "xs": 12, "sm": 6, "md": 4, "lg": 3 })
 
 
     input_container_responsive = ft.ResponsiveRow(

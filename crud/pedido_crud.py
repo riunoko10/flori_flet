@@ -51,8 +51,7 @@ def obtener_pedido(pedido_id: int) -> Pedido:
 def obtener_pedidos():
     try:
         with Session(engine) as session:
-            statement = select(Pedido)
-            pedidos = session.exec(statement)
+            pedidos = session.exec(select(Pedido)).all()
             return pedidos
     except Exception as e:
         raise RuntimeError(f"Error al obtener los pedidos: {e}")
